@@ -1,1 +1,54 @@
-\que{Интерполяция и приближенная интерполяция: метод наименьших квадратов.}
+\que{Афинное пространство. Отрезок в аффинном пространстве. Выпуклое множество. Отрезок и аффинное многообразие, как выпуклые множества (с доказательствами). Вершина выпуклого множества.}
+
+
+\begin{definition}
+	Пусть $S$ --- афинное пространство, ассоциированное с веторным пространством $V$, $p, q \in S$.
+	
+	\textit{Отрезком}, соединяющим точки $p$ и $q$ называется множество $[p, q] = \{x \in S \mid x = \lambda p + (1 - \lambda) q, \lambda \in [0, 1] \subset \mathbb{R}\}$.
+\end{definition}
+
+\begin{definition}
+	Подмножество $T$ аффинного пространства $S$ называется \textit{выпуклым множеством}, если оно вместе с любыми двумя своими точками $p, q$ содержит и отрезок $[p, q]$:
+	\begin{equation*}
+		(\forall p, q \in T) \quad [p, q] \subset T.
+	\end{equation*}
+	
+	\begin{figure}[H]
+		\centering 
+		\includesvg[scale=0.8]{conv}
+	\end{figure}
+	
+	$\emptyset$ --- выпуклое множество.
+	$p, q \in V [p, q]$ --- выпуклое множество, состоящее из одного отрезка.
+\end{definition}
+
+\begin{utv}
+	Отрезок в аффинном пространстве $S$ является выпуклым множеством.
+\end{utv}
+\begin{proof}
+	$p, q \in S, [p, q]; \quad y, z \in [p, q] \Rightarrow \begin{matrix}
+		y = \lambda_1 p + (1 - \lambda_1) q \\
+		z = \lambda_2 p + (1 - \lambda_2) q
+	\end{matrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}; \lambda_1, \lambda_2 \in [0, 1]$. 
+	
+	Рассмотрим $x = \lambda y + (1 - \lambda) z \in [y, z]$ и произвольную точку $o \in S: \overline{ox} = \lambda \overline{oy} + (1 - \lambda) \overline{oz}$.
+	
+	Тогда:
+	\begin{align*}
+		\overline{ox} &= \lambda (\lambda_1 \overline{op} + (1 - \lambda_1) \overline{oq}) + (1 - \lambda) (\lambda_2 \overline{op} + (1 - \lambda_2) \overline{oq}) = \\ &= \underbrace{(\lambda \lambda_1 + (1 - \lambda) \lambda_2)}_{\mu_1} \overline{op} + \underbrace{(\lambda (1 - \lambda_1) + (1 - \lambda) (1 - \lambda_2))}_{\mu_2} \overline{oq}; \\
+	\end{align*}
+	
+	$\lambda, \lambda_1, \lambda_2 \in \mathbb{R} \Rightarrow \mu_1, \mu_2 \in \mathbb{R};$. Нужно доказать, что коэффициенты $\mu_1, \mu_2 \in [0, 1]$. 
+	
+	\begin{align*}
+		\mu_1 + \mu_2 &= \lambda \lambda_1 + (1 - \lambda) \lambda_2 + \lambda (1 - \lambda_1) + (1 - \lambda) (1 - \lambda_2) = \\ &= \underbrace{(\lambda_1 + 1 - \lambda_1)}_{1} \lambda + \underbrace{(\lambda_2 + 1 - \lambda_2)}_{1} (1 - \lambda) = \lambda + 1 - \lambda = 1; \\
+	\end{align*}
+	
+	$\Rightarrow \mu_1 = 1 - \mu_2$, и, т.к. $\mu_1 \in [0,1]$, то и $\mu_2 \in [0, 1]$. 
+	
+	Таким образом, $x = \mu_1 p + (1 - \mu_1) q \in [p, q]$. 
+\end{proof}
+
+\begin{definition}
+	$S$ --- аффинное пространство, $M$ --- выпуклое множество. Элемент $x \in M$ \textit{вершиной} множества $M$, если его нельзя представить в виде $x = \lambda p + (1 - \lambda) q$, где $p, q (p \not = q) \in M, \lambda \in [0, 1]$. Т.е., $x = q = p$. 
+\end{definition}

@@ -1,53 +1,50 @@
-\que{Отрезок в векторном пространстве. Выпуклое множество. Отрезок как выпуклое множество. Вершина выпуклого множества.}
+\que{Унимодальные функции. Свойства унимодальных функций, связь унимодальных и выпуклых непрерывных функций одной переменной (с доказательством). Одномерная оптимизация: метод деления отрезка пополам.}
 
-\begin{definition}
-	Пусть $S$ --- афинное пространство, ассоциированное с веторным пространством $V$, $p, q \in S$.
-	
-	\textit{Отрезком}, соединяющим точки $p$ и $q$ называется множество $[p, q] = \{x \in S \mid x = \lambda p + (1 - \lambda) q, \lambda \in [0, 1] \subset \mathbb{R}\}$.
-\end{definition}
+\paragraph{Метод деления отрезка (почти) пополам.}  Пусть $f(x)$ унимодальна\footnote{Функция $f(x): [a, b] \to \mathbb{R}$ называется унимодальной, если она непрерывна на $[a, b]$ и существуют такие $\alpha, \beta \in \mathbb{R}$, что $a \leqslant \alpha \leqslant \beta \leqslant b$} на $[a, b]$. Выберем параметры $\delta, 0 < \delta < b - a$, $l([a, b]) = b - a$.
+\newline
 
-\begin{definition}
-	Подмножество $T$ аффинного пространства $S$ называется \textit{выпуклым множеством}, если оно вместе с любыми двумя своими точками $p, q$ содержит и отрезок $[p, q]$:
-	\begin{equation*}
-		(\forall p, q \in T) \quad [p, q] \subset T.
-	\end{equation*}
-	
-	\begin{figure}[H]
-		\centering 
-		\includesvg[scale=0.8]{conv}
-	\end{figure}
-	
-	$\emptyset$ --- выпуклое множество.
-	$p, q \in V [p, q]$ --- выпуклое множество, состоящее из одного отрезка.
-\end{definition}
+Выберем две точки: $u_1 = \frac{a + b - \delta}{2}$ и $u_2 = \frac{a + b + \delta}{2}$ (см. Рис. \ref{half}).  Вычислим $f(u_1)$ и $f(u_2)$: 
+\begin{enumerate}[label={\arabic*)}]
+	\item $f(u_1) \leqslant f(u_2) \Rightarrow$ полагаем: $a_2 = a_1, \, b_2 = u_2$;
+	\item $f(u_1 ) > f(u_2) \Rightarrow$ полагаем $a_2 = u_1, \, b_2 = b_1$.
+\end{enumerate}
 
-\begin{utv}
-	Отрезок в аффинном пространстве $S$ является выпуклым множеством.
-\end{utv}
-\begin{proof}
-	$p, q \in S, [p, q]; \quad y, z \in [p, q] \Rightarrow \begin{matrix}
-		y = \lambda_1 p + (1 - \lambda_1) q \\
-		z = \lambda_2 p + (1 - \lambda_2) q
-	\end{matrix}, \quad \lambda_1, \lambda_2 \in \mathbb{R}; \lambda_1, \lambda_2 \in [0, 1]$. 
-	
-	Рассмотрим $x = \lambda y + (1 - \lambda) z \in [y, z]$ и произвольную точку $o \in S: \overline{ox} = \lambda \overline{oy} + (1 - \lambda) \overline{oz}$.
-	
-	Тогда:
-	\begin{align*}
-		\overline{ox} &= \lambda (\lambda_1 \overline{op} + (1 - \lambda_1) \overline{oq}) + (1 - \lambda) (\lambda_2 \overline{op} + (1 - \lambda_2) \overline{oq}) = \\ &= \underbrace{(\lambda \lambda_1 + (1 - \lambda) \lambda_2)}_{\mu_1} \overline{op} + \underbrace{(\lambda (1 - \lambda_1) + (1 - \lambda) (1 - \lambda_2))}_{\mu_2} \overline{oq}; \\
-	\end{align*}
-	
-	$\lambda, \lambda_1, \lambda_2 \in \mathbb{R} \Rightarrow \mu_1, \mu_2 \in \mathbb{R};$. Нужно доказать, что коэффициенты $\mu_1, \mu_2 \in [0, 1]$. 
-		
-	\begin{align*}
-		\mu_1 + \mu_2 &= \lambda \lambda_1 + (1 - \lambda) \lambda_2 + \lambda (1 - \lambda_1) + (1 - \lambda) (1 - \lambda_2) = \\ &= \underbrace{(\lambda_1 + 1 - \lambda_1)}_{1} \lambda + \underbrace{(\lambda_2 + 1 - \lambda_2)}_{1} (1 - \lambda) = \lambda + 1 - \lambda = 1; \\
-	\end{align*}
-	
-	$\Rightarrow \mu_1 = 1 - \mu_2$, и, т.к. $\mu_1 \in [0,1]$, то и $\mu_2 \in [0, 1]$. 
-	
-	Таким образом, $x = \mu_1 p + (1 - \mu_1) q \in [p, q]$. 
-\end{proof}
+Получаем $f$ унимодальна на $[a_2, b_2]$, $l([a_2, b_2]) = b_2 - a_2 = \frac{b - a + \delta}{2}$. И так далее \dots
+\newline
 
-\begin{definition}
-	$S$ --- аффинное пространство, $M$ --- выпуклое множество. Элемент $x \in M$ \textit{вершиной} множества $M$, если его нельзя представить в виде $x = \lambda p + (1 - \lambda) q$, где $p, q (p \not = q) \in M, \lambda \in [0, 1]$. Т.е., $x = q = p$. 
-\end{definition}
+Опишем $k$-й шаг.
+
+Имеется $[a_k, b_k]$, $\Omega_{\ast} \cap [a_k, b_k] \not = \emptyset$ --- множество точек минимума.
+
+$u_{2 k - 1} = \frac{a_k + b_k - \delta}{2}, u_{2 k} = \frac{a_k + b_k + \delta}{2}$. Вычисляем $f(u_{2 k - 1})$ и $f(u_{2 k})$.
+\begin{enumerate}[label={\arabic*)}]
+	\item  $f(u_{2 k - 1}) \leqslant f(u_{2 k}) \Rightarrow a_{k + 1} = a_k, \, b_{k + 1} = u_{2 k}$;
+	\item $f(u_{2 k - 1}) > f(u_{2 k}) \Rightarrow a_{k + 1} = u_{2 k - 1}, \, b_{k + 1} = b_k$.  
+\end{enumerate}
+
+$l([a_{k + 1}, b_{k + 1}]) = \frac{b - a - \delta}{2^{k + 1}} + \delta > \delta$.
+\newline
+
+\begin{wrapfigure}[10]{r}{0.5\linewidth}
+	\centering
+	\includesvg[scale=0.8]{half}
+	\caption{Иллюстрация первого шага.}
+	\label{half}
+\end{wrapfigure}
+
+\textit{Условия остановки алгоритма:}
+\begin{enumerate}
+	\item $l([a_k, b_k]) < \varepsilon$, где $\varepsilon$ --- заранее выбранное число, $\varepsilon > 0$; 
+	
+	\item если проведено заданное число итераций.
+\end{enumerate}
+
+\textit{Точка минимума} $\bar{u}_n$:
+\begin{enumerate}[label={(\alph*)}]
+	\item $f(u_{2k - 1}) \leqslant f(u_{2 k}) \Rightarrow \bar{u}_n = u_{2 k - 1}$;
+	
+	\item $f(u_{2 k - 1}) > f(u_{2k}) \Rightarrow \bar{u}_n = u_{2 k}$.
+\end{enumerate}
+
+Минимум функции $m_{\ast} \approx f(\bar{u}_n)$.
+\newline
