@@ -1,1 +1,176 @@
 \que{Многомерная оптимизация. Метод сопряженных направлений.}
+
+\begin{utv}
+	Известно, что множество $\mathbb{R}^n$ является $n$-мерным векторным пространством относительно операций покомпонентного сложения и умножения на действительные числа. Также на данном пространстве естественным образом вводится операция скалярного умножения. Таким образом, $\mathbb{R}^n$ является евклидовым, и, как следствие, нормированным пространством. Кроме того, как было замечено ранее, $\mathbb{R}^n$ можно считать аффинным пространством, отождествим точку $(x_1, \dotsc, x_n)$ со своим радиус-вектором. 
+	
+	Будем далее обозначать $\big<u, v\big>$ скалярное произведение векторов $u$ и $v$. Каждый вектор будем записывать в строку или столбец по необходимости. 
+\end{utv}
+
+\begin{utv}
+	Пусть $c = \big<c_1, c_2, \dotsc, c_n\big>, \, d = \big<d_1, d_2, \dotsc, d_n\big> \in \mathbb{R}^n$, тогда уравнение 
+	\begin{equation*}
+		\big<c, u - d\big> = c_1 (x_1 - d_1) + c_2 (x_2 - d_2) + \dotsc + c_n (x_n - d_n) = 0,
+	\end{equation*}
+	где $u = (x_1, x_2, \dotsc, x_n)$, задаёт уравнение гиперплоскости, то есть $(n - 1)$-мерной плоскости в пространстве $\mathbb{R}^n$, ортогональной вектору $c$ и проходящей через точку $d$.
+\end{utv}
+
+\begin{utv}
+	Нетрудно проверить, что отображение $\varphi_A : \mathbb{R}^n \to \mathbb{R}^n, \varphi_A(u) = A u$, где $u$ --- $n$-мерный вектор, записанный в столбец, $A$ --- матрица размера $n \times n$, является линейным оператором пространства $\mathbb{R}^n$. Ясно, что если $\varphi_A$ --- невырожденный оператор, то есть $A$ --- невырожденная матрица, то $\varphi_A(u) \not = 0$, для любого $u \not = 0$. 
+	
+	Если $A$ --- симметрическая матрица, то оператор $\varphi_A$ является самосопряжённым оператором, то есть
+	\begin{equation*}
+		\big<\varphi_A(u), v\big> = \big<u, \varphi_A(v)\big>
+	\end{equation*}
+	для любых векторов $u, v \in \mathbb{R}^n$.
+	
+	Если $A$ --- невырожденная симметрическая матрица, то матрица $A^{-1}$ также является невырожденной и симметрической
+	\begin{align*}
+		&Q(u) = \sum\limits_{i = 1, \dotsc, n; j = 1, \dotsc, n}{c_{ij} x_i x_j} + \sum\limits_{k = 1, \dotsc, n}{d_k x_k}, \\
+		&Q(u) = \frac{1}{2} \left(\sum\limits_{i = 1, \dotsc, n}{(2c_{ii} x_i x_i)}\right) - \sum\limits_{k = 1, \dotsc, n}{(-d_k)x_k} = \frac{1}{2} \big<A u, u\big> - \big<b, u\big>.
+	\end{align*}
+	
+	Градиент функции $Q(u)$: 
+	\begin{equation*}
+		Q'(u) = \begin{pmatrix}
+			\frac{\partial Q}{\partial x_1} \\
+			\frac{\partial Q}{\partial x_2} \\
+			\dotsc \\
+			\frac{\partial Q}{\partial x_n}
+		\end{pmatrix} = A u - b.
+	\end{equation*}
+	
+	Матрица Гессе $Q''(u) = A$.
+\end{utv}
+
+\begin{definition}
+	Векторы $p_0, p_1, \dotsc, p_k$ называются \textit{сопряжёнными относительно матрицы} $A$, если $\big<A p_i, p_j\big> = 0$ для всех $i \not = j; 1 \leqslant i, j \leqslant n$.
+\end{definition}
+
+\begin{utv}
+	Рассматриваем функцию $f_i(\alpha) = Q(u_i - \alpha p_i), \, \alpha \geqslant 0$. Минимум достигается при $\alpha_i = \frac{\big<Q'(u_i), Q'(u_i)\big>}{\big<A p_i, p_i\big>}$.
+\end{utv}
+
+\paragraph{Метод сопряженных градиентов. } Выберем произвольную точку $u_0 \in \mathbb{R}^n$. Положим
+\begin{equation*}
+	p_0 = Q'(u_0).
+\end{equation*}
+
+Если $p_0 = 0$, то задача решена. Пусть теперь $p_0 \not = 0$. Тогда положим 
+\begin{equation*}
+	u_1 = u_0 - \alpha_0 p_0.
+\end{equation*}
+где $\alpha_0 \geqslant 0$ и определяется из условия 
+\begin{equation*}
+	f_0(\alpha) = Q(u_0 - \alpha p_0), \, f_0(\alpha_0) = \min_{\alpha \geqslant 0} f_0(\alpha).
+\end{equation*}
+
+Из замечаний приведенных выше получаем:
+\begin{equation*}
+	A p_o \not = 0, \alpha_0 > 0, \big<Q'(u_0 - \alpha_0 p_0), p_0\big> = \big<Q'(u_1), p_0\big> = \big<Q'(u_1), Q'(u_0)\big> = 0.
+\end{equation*}
+
+Если $Q'(u_1) = 0$, то задача решена. Пусть теперь $Q'(u_1) \not = 0$. Рассмотрим гиперплоскость 
+\begin{equation*}
+	G_1= \{u \in \mathbb{R}^n \mid \big<A p_0, u - u_1\big> = 0\}.
+\end{equation*}
+
+Искомая точка $u_{\ast}$ принадлежит данной гиперплоскости. Действительно,
+\begin{equation*}
+	\big<A p_0, u_{\ast} - u_1\big> = \big<A p_0, A^{-1} b - A^{-1} A u_1\big> = \big<A^{-1} A p_0, b - A u_1\big> = -\big<p_0, Q'(u_1)\big> = 0.
+\end{equation*}
+
+Будем тогда искать вектор $p_1 = Q'(u_1) - \beta_0 p_0$ параллельным гиперплоскости $G_1$, то есть таким, что 
+\begin{equation*}
+	\big<A_0 p_0, p_1\big> = \big<A p_0, Q'(u_1) - \beta_0 p_0\big> = \big<A p_0, Q'(u_1)\big> - \beta_0 \big<A p_0, p_0\big> = 0.
+\end{equation*}
+
+Следовательно, 
+\begin{equation*}
+	\beta_0 = \frac{\big<A p_0, Q'(u_1)\big>}{\big<A p_0, p_0\big>}.
+\end{equation*}
+
+Заметим, что тогда 
+\begin{equation*}
+	\big<A p_1, p_0\big> = \big<p_1, A p_0\big> = \big<A p_0, p_1\big> = 0.
+\end{equation*}
+
+Так как $Q'(u_1) \not = 0$, то $p_1 \not = 0$ и $A p_1 \not = 0$.
+
+Положим 
+\begin{equation*}
+	u_2 = u_1 - \alpha_1 p_1, 
+\end{equation*}
+где $\alpha_1 \geqslant 0$ и определяется из условия 
+\begin{equation*}
+	f_1(\alpha) = Q(u_1 - \alpha p_1), f_1(\alpha_1) = \min_{\alpha \geqslant 0}{f_1(\alpha)}.
+\end{equation*}
+
+Тогда $\alpha_1 > 0, \big<Q'(u_2), p_1\big>$.
+
+Заметим, что 
+\begin{equation*}
+	Q'(u_1) - Q'(u_2) = A u_1 - b - A u_2 + b = A (u_1 - u_2) = A(\alpha_1 p_1) = \alpha_1 A p_1.
+\end{equation*}
+
+Тогда 
+\begin{equation*}
+	\big<Q'(u_2), Q'(u_0)\big> = \big<Q'(u_2), p_0\big> = \big<Q'(u_1) - \alpha_1 A p_1, p_0\big> = 0,
+\end{equation*}
+и
+\begin{equation*}
+	\big<Q'(u_2), Q'(u_1)\big> = \big<Q'(u_2), p_1 + \beta_0 p_0\big> = \big<Q'(u_2), p_1\big> + \beta_0 \big<Q'(u_2), p_0\big> = 0.
+\end{equation*}
+
+Покажем теперь, что векторы $A p_0$ и $A p_1$ линейно независимы. Пусть \[\gamma_0 A p_0 + \gamma_1 A p_1 = 0\] для некоторых $\gamma_0$ и $\gamma_1$. Умножив равенство скалярно на $p_0$. Получаем 
+\begin{equation*}
+	\big<\gamma_0 A p_0 + \gamma_1 A p_1, p_0\big> = \gamma_0 \big<A p_0, p_0\big> + \gamma_1 \big<A p_1, p_0\big> = \gamma_0 \big<A p_0, p_0\big> = 0.
+\end{equation*}
+
+Так как $\big<A p_0, p_0\big> \not = 0$, то $\gamma_0 = 0$. Аналогично, $\gamma_1 = 0$.
+
+Вторая итерация описана.
+
+Пусть теперь для $k \geqslant 2$ получены точки $u_0, u_1, \dotsc, u_k$, где $u_{i + 1} = u_i - \alpha_i p_i,$ для $i = 0, \dotsc, k - 1$. Пусть $p_i = Q'(u_i) - \beta_{i - 1} p_{i - 1} \not = 0$, где
+\begin{equation*}
+	\beta_{i - 1} = \frac{\big<A p_{i - 1}, Q'(u_i)\big>}{\big<A p_{i - 1}, p_{i - 1}\big>},
+\end{equation*}
+$\alpha_i > 0$ и получены из условий 
+\begin{equation*}
+	f_i(\alpha) = Q(u_i - \alpha p_i), \, f_i(\alpha_i) = \min_{\alpha \geqslant 0}{f_i(\alpha)},
+\end{equation*}
+$Q'(u_i) \not = 0$ для $i = 0, 1, \dotsc, k$. Пусть также выполняются условия 
+\begin{align*}
+	&\big<A p_i, p_i\big> = 0, i \not = j, 0 \leqslant i, j \leqslant k - 1, \\
+	&\big<Q'(u_i), p_i\big> = 0, 0 \leqslant j < i \leqslant k, \\
+	&\big<Q'(u_i), Q'(u_j)\big> = 0, i \not = j, 0 \leqslant i, j \leqslant k,
+\end{align*}
+и система векторов $A p_0, A p_1, \dotsc, A p_{k - 1}$ линейно независима. 
+
+Тогда множество 
+\begin{equation*}
+	G_k = \{u \in \mathbb{R}^n \mid \big<A p_i, u - u_{i + 1}\big> = 0, i = 0, 1, \dotsc, k - 1\}
+\end{equation*}
+представляет собой плоскость размерности $(n - k)$. Непосредственно проверяется, что $u_k \in G_k$ и $u_{\ast} \in G_k$.
+
+Вектор $p_k = Q'(u_k) - \beta_{k - 1} p_{k - 1}$ будем искать так, чтобы он был параллелен $G_k$. Так как, как легко проверить, $\big<A p_i, p_k\big> = 0$ для $k = 0, \dotsc, k - 2$, то потребуем, чтобы $\big<A p_{k - 1}, p_k\big> = 0$, то есть 
+\begin{equation*}
+	\beta_{k - 1} = \frac{\big<A p_{k - 1}, Q'(u_k)\big>}{\big<A p_{k - 1}, p_{k - 1}\big>}.
+\end{equation*}
+
+Получим $p_k \not = 0$. Положим тогда 
+\begin{equation*}
+	u_{k + 1} = u_k - \alpha_k p_k,
+\end{equation*}
+где $\alpha_k > 0$ и получено из условий 
+\begin{equation*}
+	f_k(\alpha) = Q(u_k - \alpha p_k), \, f_k(\alpha_k) = \min_{\alpha \geqslant 0}{f_k(\alpha)}.
+\end{equation*}
+
+Тогда 
+\begin{equation*}
+	\alpha_k = \frac{\big<Q'(u_k), p_k\big>}{\big<A p_k, p_k\big>} = \frac{Q'(u_k), Q'(u_k) - \beta_k p_{k - 1}}{\big<A p_k, p_k\big>} = \frac{\big<Q'(u_k), Q'(u_k)\big>}{\big<A p_k, p_k\big>}. 
+\end{equation*}
+
+Равенства и свойсво линейной независимости, аналогичные свойствам предыдущих итераций, проверяются непосредственно.
+
+Так как векторы $Q'(u_0), Q'(u_1), \dotsc, Q'(u_k)$ образуют ортогональную систему в $n$-мерном пространстве, то не более, чем за $n$ шагов, мы найдем $u_k = u_{\ast}$.

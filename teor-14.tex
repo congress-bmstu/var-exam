@@ -1,1 +1,46 @@
 \que{Нормированные и метрические пространства. Связь нормированных и метрических пространств. Пространства $\mathbb{R}^n, C[a, b], D_1[a, b]$. Норма и метрика в пространствах $\mathbb{R}^n, C[a, b], D_1[a, b]$ (с доказательством).}
+
+\begin{definition}
+	\textit{Нормой} называется неотрицательная вещественнозначная функция, определённая на векторном пространстве $V$, и обладающая свойствами
+	\begin{enumerate}
+		\item $\norm{v} = 0 \Rightarrow v = 0$,
+		
+		\item $\norm{\lambda v} = \abs{\lambda} \cdot \abs{v}$ (\textsc{однородность}),
+		
+		\item $\norm{u + v} \leqslant \norm{u} + \norm{v}$ (\textsc{неравенство треугольника})
+	\end{enumerate}
+	для любых $u, v \in V$.
+	
+	Векторное пространство с определённой нормой называют \textit{нормированным}.
+\end{definition}
+
+\begin{definition}
+	\textit{Метрикой} называется неотрицательная вещественнозначная фнукция двух аргументов $\rho(x, y): A \to \mathbb{R}$, определённая на произвольном множестве $A$, со свойствами 
+	\begin{enumerate}
+		\item $\rho(x, y) = 0 \Leftrightarrow x = y$,
+		
+		\item $\rho(x, y) = \rho(y, x)$ (\textsc{симметричность}),
+		
+		\item $\rho(x, z) \leqslant \rho(x, y) + \rho(y, z)$ (\textsc{неравенство треугольника})
+	\end{enumerate}
+	для любых $x, y, z \in A$.
+	
+	Множество с введённой метрикой называют \textit{метрическим пространством}.
+\end{definition}
+
+\begin{utv}
+	Любое нормированное пространство является метрическим, еслли определить метрику $\rho(u, v) = \norm{u - v}$.
+\end{utv}
+\begin{proof}
+	\begin{enumerate}
+		\item $\rho(u, v) = \norm{u - v} \geqslant 0$,
+		
+		$\rho(u, v) = 0 \Leftrightarrow \norm{u - v} = 0 \Leftrightarrow u - v = 0 \Leftrightarrow u = v$;
+		
+		\item $\rho(u, v) = \norm{u - v} = \norm{u - w + w - v} \leqslant \norm{u - w} + \norm{w - v} = \rho(u. w) + \rho(w, v)$;
+		
+		\item $\rho(u, v) = \norm{u, v} = \norm{(- 1) (v - u)} = \abs{- 1} \cdot \norm{v - u} = \norm{v - u} = \rho(v, u)$. 
+	\end{enumerate}
+\end{proof}
+
+%TODO: Дописать
