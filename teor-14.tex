@@ -43,4 +43,86 @@
 	\end{enumerate}
 \end{proof}
 
-%TODO: Дописать
+\begin{definition}
+	$C[a, b]$ --- пространство непрерывных на отрезке $[a, b]$ функций, имеет норму:
+	\begin{equation*}
+		\norm{y}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}}.
+	\end{equation*}
+\end{definition}
+\begin{utv}
+	Легко убедиться, что $\norm{y}_0$ действительно норма в $C[a, b]$.
+\end{utv}
+\begin{proof}
+	\begin{enumerate}
+		\item $\norm{y}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} \geqslant 0 \text{, поскольку } \abs{y(x)} \geqslant 0 \text{ для всех } x$, \\ 
+		$\norm{y}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} = 0 \text{ тогда и только тогда, когда } 0 \leqslant \abs{y(x)} \leqslant 0 \text{ для любого } x \in [a, b], \text{ то есть }$ \\  $y(x) \equiv 0;$ 
+		
+		\item $\norm{\alpha y}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{(\alpha y)(x)}} = \max\limits_{a \leqslant x \leqslant b}{\abs{\alpha \cdot y(x)}} = \max\limits_{a \leqslant x \leqslant b}{\abs{\alpha}\cdot\abs{y(x)}} = \abs{\alpha} \cdot \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} = \abs{\alpha} \cdot \norm{y}_0$;
+			
+		\item $\norm{y + z}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{(y + z)(x)}} = \max\limits_{a \leqslant x \leqslant b}{\abs{y(x) + z(x)}} \leqslant \max\limits_{a \leqslant x \leqslant b}{(\abs{y(x)} + \abs{z(x)})} \leqslant \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} + + \max\limits_{a \leqslant x \leqslant b}{\abs{z(x)}} = \norm{y}_0 + \norm{z}_0$.
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	В $C[a, b]$ определена метрика $\rho(y_1, y_2) = \norm{y_1 - y_2}_{0} = \max\limits_{a \leqslant x \leqslant b}{\abs{y_1(x) - y_2(x)}}$.
+\end{corollary}
+
+Тогда мы можем определить $\varepsilon$-окрестность произвольной точки $y_0$ относительно метрики $\rho_0$. А именно, 
+\begin{equation*}
+	U_{0, \varepsilon} = \{y \in C[a, b] \mid \rho_0(y_0, y) < \varepsilon\} = \{y \in C[a, b] \mid \abs{y_0(x) - y(x)} < \varepsilon \text{ для всех } x \in [a, b]\}.
+\end{equation*}
+
+Геометрически это означает, что в $\varepsilon$-окрестности функции $y_0$ лежат все непрерывные на отрезке $[a, b]$ функции, графики которых на всём отрезке $[a, b]$ лежат внутри полосы шириной $2 \varepsilon$  по вертикали вокруг графика функции $y_0$, то есть в каждой точке на $\varepsilon$ вверх и на $\varepsilon$ вниз от значения функции $y_0$ в данной точке. 
+
+Про такие функции будем говорить, что они близки в смысле близости 0-го порядка. 
+
+\begin{definition}
+	$D_1[a, b]$ --- пространство всех непрерывно дифференцируемых функций на отрезке $[a, b]$, имеет норму:
+	\begin{equation*}
+		\norm{y}_1 = \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{y'(x)}}.
+	\end{equation*}
+\end{definition}
+
+\begin{utv}
+	Аналогично предыдущему утверждению, можем проверить, что это действительно норма в $D_1[a, b]$.
+\end{utv}
+\begin{proof}
+	\begin{enumerate}
+		\item Очевидно;
+		
+		\item $\norm{\alpha y}_1 = \max\limits_{a \leqslant x \leqslant b}{\abs{(\alpha y)(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{(\alpha y')(x)}} = \max\limits_{a \leqslant x \leqslant b}{\abs{\alpha \cdot y(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{\alpha \cdot y'(x)}} = \abs{\alpha} \cdot \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} + + \abs{\alpha} \cdot \max\limits_{a \leqslant x \leqslant b}{\abs{y'(x)}} = \abs{\alpha} \cdot \left(\max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{y'(x)}}\right) = \abs{\alpha} \cdot \norm{y}_1$;
+		
+		\item $\norm{y + z}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{(y + z)(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{(y' + z')(x)}} \leqslant \max\limits_{a \leqslant x \leqslant b}{\abs{y(x) + y'(x) + z(x) + z'(x)}} \leqslant \\ \leqslant \max\limits_{a \leqslant x \leqslant b}{(\abs{y(x)} + \abs{y'(x)} + \abs{z(x)} + \abs{z'(x)})} \leqslant \left(\max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{y'(x)}}\right) + \\ + \left(\max\limits_{a \leqslant x \leqslant b}{\abs{z(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{z'(x)}}\right) = \norm{y}_1 + \norm{z}_1$.
+	\end{enumerate}
+\end{proof}
+
+\begin{corollary}
+	В пространстве $D_1[a, b]$ также определена метрика $\rho_1(y_1, y_2) = \norm{y_1 - y_2}_1 = = \max\limits_{a \leqslant x \leqslant b}{\abs{y_1(x) - y_2(x)}} + \max\limits_{a \leqslant x \leqslant b}{\abs{y_1'(x) - y_2'(x)}}$.
+\end{corollary}
+
+Тогда $\varepsilon$-окрестность произвольной точки $y_0$ относительно метрики $\rho_1$
+\begin{equation*}
+	U_{1, \varepsilon} = \{y \in D_1[a, b] \mid \abs{y_0(x) - y(x)} < \varepsilon \text{ и } \abs{y'_0(x) - y'(x)} < \varepsilon \text{ для всех } x \in [a, b]\}.
+\end{equation*}
+
+Геометрически это означает, что в $\varepsilon$-окрестности функции $y_0$ лежат все непрерывно дифференцируемые на отрезке $[a, b]$ функции, графики которых на всём отрезке $[a, b]$ лежат внутри полосы шириной $2 \varepsilon$ по вертикали вокруг графика функции $y_0$, и производные данных функций, то есть тангенсы угла наклона касательных, отличаются от производной функции $y_0$ в каждой точке не более, чем на $\varepsilon$.
+
+Про такие функции будем говорить, что они близки в смысле близости 1-го порядка.
+
+\begin{utv}
+	Если две функции $y_1, y_2 \in D_1[a, b]$ и близки в смысле близости 1-го порядка, то они также близки и в смысле близости 0-го порядка, то есть если $\rho_1(y_1, y_2) < \varepsilon$ для некоторого $\epsilon > 0$, то также $\rho_0(y_1, y_2 < \varepsilon)$.
+\end{utv}
+\begin{utv}
+	Согласно предыдущему утверждению, можно сформулировать еще одно определение окрестности точки, для $y_0 \in D_1[a, b]$. 
+	
+	Назовём $\varepsilon$-окрестностью элемента $y_0$ пространства $D_1[a, b]$ в смысле метрики $\rho_0$ множество 
+	\begin{align*}
+		&U_{0, \varepsilon}(y_0) = \{y \in D_1[a, b] \mid \rho_0(y_0, y) < \varepsilon\} = \{y \in D_1[a, b] \mid \abs{y_0(x) - y(x)} < \varepsilon \text{ для всех } x \in [a, b]\}.
+	\end{align*} 
+	
+	Ясно, что тогда
+	\begin{equation*}
+		U_{1, \varepsilon}(y_0) \subset U_{0, \varepsilon}(y_0).
+	\end{equation*}
+\end{utv}
+
