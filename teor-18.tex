@@ -1,1 +1,31 @@
 \que{Слабые и сильные экстремумы функционала. Связь экстремума функционала и дифференциала функционала (с доказательством).}
+
+О слабых и сильных экстремумах смотреть в Вопросе \ref{teor-15}. 
+
+\begin{theorem}
+	Пусть функционал $J(y)$ достигает слабого экстремума при $y = y_0$, тогда его слабый дифференциал (если существует) обращается в 0 при $y = y_0$. Для сильного экстремума равенство нулю слабого дифференциала также является необходимым условием. 
+\end{theorem}
+\begin{proof}
+	Рассмотрим случай минимума. Тогда $\exists \varepsilon > 0$:
+	\begin{equation*}
+		\forall h : y_0 + h \in U_{\varepsilon, 1}(y_0) \text{ выполняется } J(y_0 + h) - J(y_0) \geqslant 0.
+	\end{equation*}
+	
+	По определению слабого дифференциала: 
+	\begin{equation*}
+		J(y_0 + h) - J(y_0) = \delta J(y_0) + \alpha \cdot \norm{h}_1.
+	\end{equation*}
+	
+	Предположим $\delta J(y_0) \not = 0$.:
+	
+	Рассмотрим
+	\begin{gather*}
+		h : \norm{h}_1 \to 0 \Rightarrow \alpha \to 0 \Rightarrow \alpha \cdot \norm{h}_1 \to 0 \\
+		\Rightarrow \exists \varepsilon_1 > 0, h \in U_{\varepsilon_1, 0}, \abs{\alpha \cdot \norm{h}_1} < \abs{\delta J(y_0)}
+	\end{gather*} 
+	и знаки $\Delta J$ и $\delta J(y_0)$ в этой окрестности совпадают.
+	
+	Возьмем $\varepsilon_2 = \min(\varepsilon_1, \varepsilon_2)$. Но $\delta J$ --- линейный функционал.
+	
+	Возьмем $-h \in U_{\varepsilon_2}(0), \delta J(-h) = - \delta J(h)$ имеют разные знаки, $\delta J(y_0) = 0$.
+\end{proof}
