@@ -1,1 +1,64 @@
-\que{Функционал. Класс допустимых функций. Слабые и сильные экстремумы функционала. Связь между сильными и слабыми экстремумами (с доказательством). Линейные функционалы. Непрерывные функционалы в смысле близости 0-го и 10го порядков, связь между ними (с доказательством).}
+\que{Функционал. Класс допустимых функций. Слабые и сильные экстремумы функционала. Связь между сильными и слабыми экстремумами (с доказательством). Линейные функционалы. Непрерывные функционалы в смысле близости 0-го и 1-го порядков, связь между ними (с доказательством).} \label{teor-15}
+
+\begin{definition}
+	\emph{Функционалом}
+	называется любое отображение из некоторого класса функций ($ C^m[a, b] $, $
+	\mathscr R[a,b] $, \ldots) в числа
+	($ \mathbb R $, $ \mathbb C $, \ldots). 
+\end{definition}
+
+\textsc{Примеры.}
+\begin{enumerate}
+	\item Значение функции в фиксированной точке $ \mathscr{J}_{x_0}[f] = f(x_0) $
+	является функционалом, определённым на действительнозначных функциях.
+	\item\label{enum1:2} Интеграл $ \mathscr{J}_{[a,b]}[f] = \int_{a}^{b} f(x)\,dx $ является
+	функционалом, определённым на пространстве $ \mathscr{R}[a,b] $
+	интегрируемых на отрезке $ [a,b] $ действительнозначных функций.
+	\item Более общий пример. Пусть $ F\colon \mathbb R^3 \to \mathbb R $ ---
+	произвольная функция трёх переменных $ F(x, y, z) $. Подставляя вместо $ y $
+	произвольную функцию $ f \in D_1[a, b] $ (так у нас обозначаются непрерывно
+	дифференцируемые функции) и вместо $ z $ её производную $ f'
+	$, получаем функционал  
+	\[
+	\mathscr{J}[f] = \int\limits_{a}^{b}F(x, f(x), f'(x))\,dx.
+	\]
+	Такие функционалы в основном и рассматриваются. 
+\end{enumerate}
+
+\begin{definition}
+	Область определения функционала называется \textit{классом допустимых функций}.
+\end{definition}
+
+\begin{definition}
+	Функционал $J(y)$ достигает слабого минимума (максимума) в точке $y_0$, если $\exists \varepsilon > 0 : \forall y \in D_1[a, b] \cap U_{1, \varepsilon}(y_0) \quad J(y) - J(y_0) \geqslant 0$ ($J(y) - J(y_0) \leqslant 0$), причём строго слабого минимума (максимума), если $J(y) > J(y_0)$ ($J(y) < J(y_0)$) для всех $y \not = y_0$.
+\end{definition}
+
+\begin{definition}
+	Функционал $J(y)$ достигает в точке $y_0$ сильного минимума (максимума), если $\exists \varepsilon > 0 : \forall y \in D_1[a, b] \cap U_{0, \varepsilon}(y_0), \quad J(y) - J(y_0) \geqslant 0$ ($J(y) - J(y_0) \leqslant 0$), причем строго сильного минимума, если $J(y) > J(y_0)$ ($J(y) < J(y_0)$) для всех $y \not = y_0$. 
+\end{definition}
+
+\begin{utv}
+	Всякий сильный экстремум является слабым экстремумом.
+\end{utv}
+\begin{proof}
+	Пусть $y_0$ --- сильный экстремум, т.е. $\exists \varepsilon > 0 : \forall y \in D_1[a, b] \cap U_{0, \varepsilon}(y_0), \quad J(y) - J(y_0) \geqslant 0$ ($J(y) - J(y_0) \leqslant 0$).
+	
+	Рассмотрим $U_{1, \varepsilon}(y_0) \subset U_{0, \varepsilon}(y_0) \Rightarrow (\forall y \in D_1[a, b] \cap U_{1, \varepsilon}(y_0)), \quad J(y) - J(y_0) \geqslant 0$ ($J(y) - J(y_0) \leqslant 0$) $\Rightarrow y_0$ --- слабый экстремум. 
+\end{proof}
+
+\begin{definition}
+	Функционал $J(y)$ называется \textit{непрерывным} в точке $y_0$ в смысле близости $k$-го порядка ($k = 0, 1$), ксли $\forall \varepsilon > 0 \, \exists \delta > 0 : \forall y \in D_1[a, b] \cap U_{k, \delta}(y_0) \quad \abs{J(y) - J(y_0)} < \varepsilon$.
+\end{definition}
+
+\begin{definition}
+	Функционал $J(y)$ называется \textit{линейным}, если
+	\begin{enumerate}
+		\item $\forall y_1, y_2 \in K \quad J(y_1 + y_2) = J(y_1) + J(y_2)$;
+		
+		\item $\forall y \in K, \, \forall \alpha \in \mathbb{R}, \, J(\alpha y) = \alpha \cdot J(y)$.
+	\end{enumerate}
+\end{definition}
+
+Связь между ними? %TODO: Найти и дописать
+
+

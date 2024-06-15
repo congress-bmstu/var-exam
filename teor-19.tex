@@ -1,1 +1,99 @@
 \que{Простейшая задача вариационного исчисления. Уравнение Эйлера (с доказательством).}
+
+$F(x, y, z)$ --- дважды непрерывно-дифференцируема как функция двух переменных. Рассмотрим функции $y \in D_1[a, b], y(a) = A, y(b) = B$. 
+
+$y$ доставляет слабый экстремум функционалу $J(y) = \int_{a}^{b} F(x, y, y') \, dx$. 
+
+Пусть $h(x)$ --- некоторое приращение для $y(x)$. $h \in D_1[a, b]$. Потребуем, чтобы $h(a) = h(b) = 0$. Вычислим приращения $\Delta J$:
+\begin{equation*}
+	\Delta J = \int_{a}^{b} F(x, y + h, y' + h') = \int_{a}^{b} (F(x, y + h, y' + h') - F(x, y, y')) \, dx.
+\end{equation*}
+
+Запишем формулу Тейлора для функции $F(x, y, z)$: 
+\begin{gather*}
+	F(x + \beta_x, y + \beta_y, z + \beta_z) = F(x, y, z) + \beta_x \frac{\partial F}{\partial x} + \beta_y \frac{\partial F}{\partial y} + \beta_z \frac{\partial F}{\partial z} +  \\
+	+ \frac{1}{2} \Big(\beta_x^2 \frac{\partial^2 F}{\partial x^2} \Big|_{x + \theta \beta x, y + \theta \beta y, z + \theta \beta z} + \beta_y^2 \frac{\partial^2 F}{\partial y^2} \Big|_{\dotsc} + \beta_z^2 \frac{\partial^2 F}{\partial z^2} \Big|_{\dotsc} + \\ 
+	+ 2 \beta_x \beta_y \frac{\partial^2 F}{\partial x \partial y} \Big|_{\dotsc} + 2 \beta_x \beta_z \frac{\partial^2 F}{\partial x \partial z} \Big|_{\dotsc} + 2 \beta_y \beta_z \frac{\partial^2 F}{\partial y \partial z} \Big|_{\dotsc}\Big).
+\end{gather*}
+
+Подставим $\beta_x = 0, \beta_y = h(x), \beta_z = h'(x), y = y(x), z = y'(x):$
+\begin{gather*}
+	F(x, y + h, y' + h') = h \cdot F_y(x, y, y') + h' \cdot F_{y'}(x, y, y') + \frac{1}{2} (h^2 \cdot F_{y y}(x, y + \theta h, y' + \theta h')) + \\
+	+ 2 h h' \cdot F_{y y'}(x, y + \theta h, y' + \theta h') + h'^2 \cdot F_{y'y'}(x, y + \theta h, y' + \theta h'); \\
+	\int_{a}^{b} (F(x, y + h, y' + h') - F(x, y, y')) \, dx = \int_{a}^{b} (h \cdot F_y(x, y, y') + h' \cdot F_{y'}(x, y, y')) \, dx + \\
+	+ \int_{a}^{b} \left(\frac{h^2}{2} \cdot F_{y y}(x, y + \theta h, y' + \theta h') + h h' \cdot F_{y y'}(x, y + \theta h, y' + \theta h') + \frac{h'^2}{2} \cdot F_{y' y'} (x, y + \theta h, y' + \theta h')\right) \, dx.
+\end{gather*}
+
+Покажем, что $\varphi(h)$ --- слабый дифференциал функционала $J(y)$. Действительно:
+\begin{enumerate}
+	\item $\varphi(h)$ --- линейный относительно $h$ функционал
+	\begin{gather*}
+		\varphi(h_1 + h_2) = \int_{a}^{b} (F_y(x, y, y') \cdot (h_1 + h_2) + F_{y'}(x, y, y') \cdot (h'_1 + h'_2)) \, dx = \\
+		= \int_{a}^{b} (F_y \cdot h_1 + F_{y'} \cdot h'_1) \, dx + \int_{a}^{b} (F_{y} \cdot h_2 + F_{y'} \cdot h'_2) \, dx = \varphi(h_1) + \varphi(h_2); \\
+		\varphi(\beta h) = \int_{a}^{b} (F_{y}(\beta h) + F_{y'}(\beta h)') \, dx = \beta \int_{a}^{b} (F_y h + F_{y'} h') \, dx = \beta \varphi(h).
+	\end{gather*}
+	\item Пусть $\norm{h_1} \to 0 \Rightarrow$ 
+	\begin{gather*}
+		\varphi_b(h) = s_1 + s_2 + s_3
+		\\
+		s_1 = \int_{a}^{b} \left(\frac{h^2}{2} \cdot F_{y y}(x, y + \theta h, y' + \theta h')\right) \, dx \Rightarrow \abs{\frac{F_{y y}(x, y + \theta h, y' + \theta h')}{2}} \leqslant M_1; \\
+		0 \leqslant \frac{s_1}{\norm{h}_1} \leqslant M_1 \int_{a}^{b} \frac{\abs{h^2}}{\norm{h}_1} \, dx = M_1 \cdot \norm{h}_1 \int_{a}^{b} \frac{\abs{h^2}}{\norm{h}^2_1} \, dx \leqslant M_1 \cdot \norm{h}_1 \cdot (b - a) \to 0 \Rightarrow \frac{s_1}{\norm{h}_1} \to 0;
+		\\
+		\frac{s_2}{\norm{h}_1} \leqslant M_1 \int_{a}^{b} \frac{\abs{h h'}}{\norm{h}_1} \, dx = M_2 \cdot \norm{h}_1 \int_{a}^{b} \frac{\abs{h} \cdot \abs{h'}}{\norm{h}_1 \cdot \norm{h}_1} \leqslant M_2 \cdot \norm{h}_1 \cdot (b - a) \to 0; \\
+		\frac{s_3}{\norm{h}_1} \leqslant M_3 \int_{a}^{b} \frac{h'^2}{\norm{h}_1} \, dx \leqslant M_3 \cdot \norm{h}_1 \cdot (b - a) \to 0; \\
+		\frac{\abs{s_1 + s_2 + s_3}}{\norm{h}_1} \to 0 \text{ при } \norm{h}_1 \to 0. 
+	\end{gather*}
+	
+	Получим:
+	\begin{equation*}
+		\delta J = \int_{a}^{b} (F_y h + F_{y'} h') \, dx \text{ --- слабый дифференциал}.
+	\end{equation*}
+	
+	Тогда $\delta J = 0$ в точке экстремума. Имеем: 
+	\begin{equation*}
+		\int_{a}^{b} (F_{y} h + F_{y'} h') \, dx = 0, \, h(x) \in D_1[a, b], \, h(a) = h(b) = 0.
+	\end{equation*}
+	
+	Тогда $F_{y'}$ дифференцируема и $F_{y} - \dv{}{x} F_{y'} = 0$ --- уравнение Эйлера.
+\end{enumerate}
+
+\begin{definition}
+	Интегральные кривые уравнений Эйлера называются \textit{экстремалями}.
+\end{definition}
+
+\begin{utv}
+	Так как сильный экстремум является слабым, то равенство нулю уравнения Эйлера является необходимым условием и для сильного экстремума тоже.
+\end{utv}
+
+\textsc{Важные случаи.} 
+\begin{enumerate}
+	\item $F$ не зависит от $y$:
+	\begin{equation*}
+		\dv{}{x} F_{y'} = 0 \Rightarrow F_{y'} = C \text{ --- ДУ первого порядка};
+	\end{equation*}
+	
+	\item $F$ не зависит от $x$:
+	\begin{equation*}
+		F_{y} - \dv{}{x} F_{y'} = F_y - \left(F_{y y'} \dv{y}{x} + F_{y' y'} \dv{y}{x}\right) = F_y - F_{y y'} \cdot y' - F_{y' y'} \cdot y'' = 0.
+	\end{equation*}
+	
+	Тогда:
+	\begin{gather*}
+		\dv{}{x} \left(F - y' \cdot F_{y'}\right) = F_{y} \cdot y' + F_{y'} \cdot y'' - (y'' \cdot F_{y'} + y' (F_{y' y'} \cdot y' + F_{y' y'} \cdot y'')) = \\
+		= y' (F_y - F_{y' y} \cdot y' - F_{y' y'} \cdot y'') = 0 \Rightarrow F - y' \cdot F_{y'} = 0;
+	\end{gather*}
+	
+	\item $F$ не зависит от $y'$: уравнение Эйлера не является дифференциальным;
+	
+	\item В вариационном исчислении часто встречаются функционалы вида:
+	\begin{gather*}
+		\int_{a}^{b} v(x, y) \sqrt{1 + y'^2} \, dx \text{ --- интеграл функции по длине дуги;} \\
+		F_{y} - \dv{}{x} F_{y'} = v_y \sqrt{1 + y'^2} - \dv{}{x} \left(v \cdot \frac{2 y'}{2 \sqrt{1 + y'^2}}\right) = \\
+		= v)y \sqrt{1 + y'^2} - ((v_x + v_y \cdot y') \frac{y'}{\sqrt{1 + y'^2}} + v \cdot \frac{y'' \cdot \sqrt{1 + y'^2} - y' \cdot \frac{2 y' y''}{2 \sqrt{1 + y'^2}}}{1 + y'^2}) = \\
+		= \frac{v_y + v_y \cdot y'^2 - v_x \cdot y' - v_y \cdot y'^2 - v \cdot y'' + v \cdot \frac{y'^2 \cdot y''}{1 + y'^2}}{\sqrt{1 + y'^2}} = \\
+		\frac{v_y - v_x \cdot y' - v \cdot \frac{y'' + y'' \cdot y'^2 - y'' \cdot y'^2}{1 + y'^2}}{\sqrt{1 + y'^2}} = \frac{v_y - v_x \cdot y' - v \cdot \frac{y''}{1 + y'^2}}{\sqrt{1 + y'^2}} = 0 \Rightarrow \\
+		v_y - v_x \cdot y' - v \cdot \frac{y''}{1 + y'^2} = 0.
+	\end{gather*}
+\end{enumerate}
+
+
