@@ -47,8 +47,18 @@
 \end{proof}
 
 \begin{definition}
-	Функционал $J(y)$ называется \textit{непрерывным} в точке $y_0$ в смысле близости $k$-го порядка ($k = 0, 1$), ксли $\forall \varepsilon > 0 \, \exists \delta > 0 : \forall y \in D_1[a, b] \cap U_{k, \delta}(y_0) \quad \abs{J(y) - J(y_0)} < \varepsilon$.
+	Функционал $J(y)$ называется \textit{непрерывным} в точке $y_0$ в смысле близости $k$-го порядка ($k = 0, 1$), если $\forall \varepsilon > 0 \, \exists \delta > 0 : \forall y \in D_1[a, b] \cap U_{k, \delta}(y_0) \quad \abs{J(y) - J(y_0)} < \varepsilon$.
 \end{definition}
+
+\begin{utv}
+	Ясно, что если функционал является непрерывным в точке $y_0$ в смысле близости $k$-го порядка, то он будет непрерывным и в смысле близости меньших $k$ порядков.
+\end{utv}
+\begin{proof}
+	Очевидно, так как:
+	\begin{equation*}
+		U_{k, \varepsilon}(y_0) \subset \dotsc \subset U_{1, \varepsilon}(y_0) \subset U_{0, \varepsilon}(y_0).
+	\end{equation*}
+\end{proof}
 
 \begin{definition}
 	Функционал $J(y)$ называется \textit{линейным}, если
@@ -58,7 +68,5 @@
 		\item $\forall y \in K, \, \forall \alpha \in \mathbb{R}, \, J(\alpha y) = \alpha \cdot J(y)$.
 	\end{enumerate}
 \end{definition}
-
-Связь между ними? %TODO: Найти и дописать
 
 
