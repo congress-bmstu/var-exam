@@ -44,6 +44,43 @@
 \end{proof}
 
 \begin{definition}
+	Известно, что множество $\mathbb{R}^n$ является $n$-мерным векторным пространством относительно операций покомпонентного сложения и умножения на действительные числа. Также на данном пространстве естественным образом вводится операция скалярного умножения. Норму для вектора $X = (x_1, x_2, \dotsc, x_n)$ же можно ввести тремя разными способами:
+	\begin{enumerate}
+		\item \textit{Октаэдрическая норма}: 
+		\begin{equation*}
+			\norm{X} = \abs{x_1} + \abs{x_2} + \dotsc + \abs{x_n};
+		\end{equation*}
+		
+		\item \textit{Шаровая норма}: \begin{equation*}
+			\norm{X}_2 = \sqrt{\big<X, X\big>} = \sqrt{x_1^2 + x_2^2 + \dotsc + x_n^2}
+		\end{equation*}
+		
+		\item \textit{Кубическая норма}:
+		\begin{equation*}
+			\norm{X}_{\infty} = \max{\abs{x_1}, \abs{x_2}, \dotsc, \abs{x_n}}.
+		\end{equation*}
+	\end{enumerate}
+	
+\end{definition}
+\begin{utv}
+	Легко убедиться, что все эти нормы удовлетворяют всем трем аксиомам.
+\end{utv}
+\begin{proof}
+	Покажем, например, что $\norm{X} = \sqrt{\big<X, x\big>}$ действительно норма в $\mathbb{R}^n$.
+	\begin{enumerate}
+		\item Очевидно, что $\big<X, X\big> \geqslant 0$, значит и $\norm{X} = \sqrt{\big<X, X\big>} \geqslant 0$;
+		
+		А $\big<X, X\big> = 0$ тогда и только тогда, когда $X = \bar{0}$, т.к. сумма квадратов равна нулю тогда и только тогда, когда все $x_i = 0$.
+		
+		Таким образом, $\norm{X} = 0 \Rightarrow X = \bar{0}$.
+		
+		\item $\norm{\alpha X} = \sqrt{(\alpha x_1)^2 + (\alpha x_2)^2 + \dotsc + (\alpha x_n)^2} = \sqrt{\alpha^2 (x_1^2 + x_2^2 + \dotsc + x_n^2} = \sqrt{\alpha^2} \sqrt{x_1^2 + x_2^2 + \dotsc + x_n^2} = \abs{\alpha} \cdot \norm{X}$;
+		
+		\item Вытекает из неравенства Коши-Буняковского.
+	\end{enumerate}
+\end{proof}
+
+\begin{definition}
 	$C[a, b]$ --- пространство непрерывных на отрезке $[a, b]$ функций, имеет норму:
 	\begin{equation*}
 		\norm{y}_0 = \max\limits_{a \leqslant x \leqslant b}{\abs{y(x)}}.
