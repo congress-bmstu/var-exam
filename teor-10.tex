@@ -1,1 +1,143 @@
 \que{Выпуклые функции и строго выпуклые функции. Локальные и глобальные минимумы функции. Множество точек минимума выпуклой и строго выпуклой функции (с доказательством).}
+
+\begin{definition}[Выпуклая функция]
+	Функция $f(u)$, определенная на выпуклом множестве $U$, называется \textit{выпуклой} на это множестве, если
+	\begin{equation}\label{выпуклая функция}
+		f(\alpha u + (1-\alpha)v)\leq\alpha f(u) + (1-\alpha)f(v)
+	\end{equation}
+	при всех $u,\,v\in U$, всех $\alpha\; (0\leq\alpha\leq1)$. 
+\end{definition}
+
+\begin{definition}[Строго выпуклая функция]
+	Если в \eqref{выпуклая функция} при $u\neq v$ равенство возможно только при $\alpha=0$ и $\alpha=1$, то функция называется \textit{строго выпуклой} на $U$.
+\end{definition}
+
+\begin{definition}[Вогнутая/строго вогнутая функция]
+	Функцию $f(x)$ называют \textit{(строго) вогнутой} на выпуклом множестве $U$, если функция $-f(x)$ является \textit{(строго) выпуклой} на $U$.
+\end{definition}
+
+\begin{remark}
+	Если множество $U$ пусто или состоит из одной точки, то фунцкию на таком множестве нам будет удобно считать выпуклой (или вогнутой) по определению.
+\end{remark}
+
+\begin{remark}
+	Если не оговорено противное, то будем рассматривать лишь функции, принимающие конечные значения во всех точках области определения.
+\end{remark}
+
+\begin{definition}[Точка глобального минимума]
+	Точка $x_*$ называется точкой глобального минимума функции $f(x)$ на множестве $U$, если 
+	\begin{equation*}
+		\forall x \in U:\: f(x_*) \leq f(x).
+	\end{equation*}
+\end{definition}
+
+Аналогично определяется точка глобального максимума.
+
+\begin{definition}[Минимальное значение функции]
+	Величину $f_* = f(x_*)$ назовём минимальным значением функции $f(x)$ на множестве $\Omega$
+	\begin{equation*}
+		\min_{x\in \Omega} f(x) = f(x_*).
+	\end{equation*}
+\end{definition}
+\begin{remark}
+	Множество всех точек минимума на множестве $\Omega$ будем обозначать $\Omega_*$.
+\end{remark}
+
+Аналогично определяется максимумальное значение функции.
+
+\begin{definition}[Точка локального минимума]
+	Точка $v_*$ называется точкой локального минимума функции $f(x)$ на множестве $\Omega$, если
+	\begin{equation*}
+		\exists \varepsilon > 0,\, \forall x \in \Omega \cap U_\varepsilon(v_*):\:
+		f(v_*)\leq f(x),
+	\end{equation*}
+	где
+	\begin{equation*}
+		U_\varepsilon(v_*) = \left\{u \big| \rho(v_*,x)<\varepsilon\right\} = \left\{u \big|\, |u-v_*|<\varepsilon\right\}.
+	\end{equation*}
+\end{definition}
+
+\begin{definition}[Точка строго локального минимума]
+	Если для некоторого $\varepsilon > 0$ равенство $f(u)=f(v_*)$ возможно только в одной точке $v_*$, то $v_*$ называется точкой строгого локального минимума.
+\end{definition}
+
+\begin{theorem}
+	Пусть $\Omega$ -- выпуклое множество, функция $f(x)$ -- выпуклая функция.
+	\begin{equation*}
+		f(x):\: \Omega \to \mathbb{R}
+	\end{equation*}
+	
+	Тогда всякая точка локального минимума функции $f(x)$ является точкой её глобального минимума на $\Omega$, причём
+	\begin{equation*}
+		\Omega_* = \left\{x\big| x\in \Omega,\, f(x)=f(x_*)\right\} \text{выпукло}
+	\end{equation*}
+	
+	Если функция строго выпукла на $\Omega$, то $\Omega_*$ содержит не более одной точки.
+	
+	\begin{proof}
+		Докажем по очереди, следующие утверждения из теоремы:
+		\begin{enumerate}[label=(\arabic*)]
+		\item \textit{Всякая точка локального минимума функции $f(x)$ является точкой её глобального минимума на $\Omega$.}
+		
+		Пусть $v_*$ -- точка локального минимума. Тогда 
+		\begin{equation*}
+			\exists \varepsilon > 0,\, \forall x \in \Omega \cap U_\varepsilon(v_*):\:
+			f(v_*)\leq f(x).
+		\end{equation*}
+		Возьмём произвольную точку $x\in\Omega$. Подберём $0<\alpha<1$ такую, что $\alpha \left|x-v_*\right|<\varepsilon$.
+		
+		Тогда
+		\begin{equation*}
+			v_* + \alpha(x-v_*) \in U_\varepsilon(v_*)\cap\Omega,
+		\end{equation*}
+		поскольку:
+		\begin{itemize}
+			\item[(a)] $x,\,v_*\in\Omega,\:\alpha\in\left(0,\,1\right)$
+			\begin{equation*}
+				v_* + \alpha(x-v_*) = v_* + \alpha x- \alpha v_* = \alpha x + (1-\alpha)v_*\in \Omega,
+			\end{equation*}
+			так как $\Omega$ -- выпуклое множество;
+			\item[(b)]
+			\begin{equation*}
+				\rho(v_*+\alpha(x-v_*),\,v_*) = \left| v_* + \alpha(x-v_*) - v_* \right| = \left| \alpha(x-v_*) \right| = \alpha \left|x-v_*\right| < \varepsilon
+			\end{equation*}
+			Следовательно
+			\begin{equation*}
+				v_* + \alpha(x-v_*) \in U_\varepsilon(v_*).
+			\end{equation*}
+		\end{itemize}
+		
+		Получаем, что 
+		\begin{equation*}
+		f(v_*) \leq f(v_* + \alpha(x-v_*)) = f(\alpha x + (1-\alpha)v_*)\leq \alpha f(x) + (1-\alpha)f(v_*) = f(v_*) + \alpha(f(x)-f(v_*)),
+		\end{equation*}
+		\begin{equation*}
+			\alpha(f(x)-f(v_*))\geq 0 \implies f(x)-f(v_*)\geq0\implies f(x)\geq f(v_*),
+		\end{equation*}
+		Таким образом $v_*$ -- точка глобального минимума.
+		\item \textit{$\Omega_*$ -- выпуклое множество}
+		
+		Пусть $u,\,v\in \Omega_*$, тогда $f(u)=f(v)=f_*$.
+		
+		Пусть $\lambda\in \left[0,\,1\right]$. Рассмотрим точку $\lambda u + (1-\lambda)v$ (выпуклая комбинация).
+		\begin{equation*}
+			f_* \leq f(\lambda u + (1-\lambda)v)\leq \lambda f(u)+(1-\lambda)f(v)=\lambda f_*+(1-\lambda)f_*=f_*.
+		\end{equation*}
+		Следовательно
+		\begin{equation*}
+			f(\lambda u + (1-\lambda)v)=f_* \implies \lambda u + (1-\lambda)v\in \Omega_* \implies \Omega_*~\text{выпуклое множество}
+		\end{equation*}
+		
+		\item \textit{Если функция строго выпукла на $\Omega$, то $\Omega_*$ содержит не более одной точки.}
+		
+		Пусть $f$ -- строго выпуклая функция. Возьмём $u,\,v\in \Omega \big| u\neq v$. Возьмём $\lambda\in\left(0,\,1\right)$. Следовательно
+		\begin{equation*}
+			f_*\leq f(\lambda u + (1-\lambda)v) < \lambda f(u) + (1-\lambda)f(v) = f_*,
+		\end{equation*}
+		Для строго выпуклых функций неравенство не может обратиться в равенство при $0<\lambda<1$. Следовательно, строго выпуклая функция может достигать своей нижней грани на выпуклом множестве не более чем в одной точке
+		\begin{equation*}
+			\left|\Omega_*\right|\leq1.
+		\end{equation*}
+		\end{enumerate}
+	\end{proof}
+\end{theorem}
