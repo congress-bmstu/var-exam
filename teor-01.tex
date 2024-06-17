@@ -3,11 +3,18 @@
 \begin{definition}
 	Функция $f(x): [a, b] \to \mathbb{R}$ называется \textit{унимодальной}, если она непрерывна на $[a, b]$ и существуют такие $\alpha, \beta \in \mathbb{R}$, что $a \leqslant \alpha \leqslant \beta \leqslant b$ и 
 	\begin{enumerate}[label={\arabic*)}]
-		\item функция $f(x)$ строго монотонно убывает на $[a, \alpha]$, т.е. $(\forall x_1, x_2 \in [a, \alpha]) \, x_1 < x_2 \Rightarrow f(x_1) > f(x_2)$;
+		\item функция $f(x)$ строго монотонно убывает на $[a, \alpha]$, т.е.
+      \[
+        \forall x_1, x_2 \in [a, \alpha] : \, x_1 < x_2 \Rightarrow f(x_1) > f(x_2);
+      \]
 		
 		\item $f(x) = c (c \in \mathbb{R})$ для всех $x \in [\alpha, \beta]$;
 		
-		\item функция $f(x)$ строго монотонно возрастает на $[a, \alpha]$, то есть $(\forall x_1, x_2 \in [\beta, b]) x_1 < x_2 \Rightarrow f(x_1) < f(x_2)$.
+		\item функция $f(x)$ строго монотонно возрастает на $[\beta, b]$, то есть
+      \[
+        \forall x_1, x_2 \in [\beta, b] : x_1 < x_2 \Rightarrow f(x_1) < f(x_2)
+      \]
+      .
 	\end{enumerate}
 	
 	Функция называется \textit{строго унимодальной}, если $\alpha = \beta$.
@@ -36,17 +43,21 @@
 \begin{proof}
 	$f(x)$ непрерывна, выпукла (вниз) на $[a, b]$. Тогда $f(x)$ принимает на $[a, b]$ свое минимальное значение $m$ (теорема Вейерштрасса).
 	\begin{enumerate}[label={(\arabic*)}]
-		\item Пусть $c_2$ --- самая большая точка $f(c_2) = m; f(x) > 0$ на $(c_2, b]$. Если $c_2 = b$, то доказывать нечего. 
+		\item Пусть $c_2$ --- самая большая точка среди таких, что $f(x) = m$;
+      Причём $f(x) > m$ на $(c_2, b]$. Если $c_2 = b$, то доказывать нечего. 
 		
-		Пусть $c_2 < b$, доказываем, что $f(x)$ строго убывает на $[c_2, b]$. 
+		Пусть $c_2 < b$, доказываем, что $f(x)$ строго возрастает на $[c_2, b]$. 
 		
 		Доказываем от противного.
 		
 		Пусть $\exists x_1, x_2 \in [c_2, b], c_2 \leqslant x_1 < x_2 \leqslant b$. Считаем, что $f(x_1) \geqslant f(x_2) > f(c_2)$.
 		
-		Рассмотрим $[c_2, x_2], \, x_1 \in [c_2, x_2] \Rightarrow \exists \lambda \in [0, 1], x_1 = \lambda c_1 + (1 - \lambda) x_2 (\text{если } \lambda = 0, \text{ тогда } x_1 = x_2) \Rightarrow$ так как $f$ выпуклая функция $f(x_1) = f(\lambda c_2 + (1 - \lambda) x_2) \leqslant \lambda f(c_2) + (1 - \lambda) f(x_2) < \lambda f(x_2) + (1 - \lambda) f(x_2) = f(x_2)$, то есть $f(x_1) < f(x_2)$ --- получили противоречие. Таким образом, $f$ строго убывает на $[c_2, b]$.
+		Рассмотрим $[c_2, x_2]$, $x_1 \in [c_2, x_2] \Rightarrow \exists \lambda \in [0, 1], x_1 = \lambda c_2 + (1 - \lambda) x_2$
+    (если $\lambda = 0$, тогда $x_1 = x_2$). Тогда, так как $f$ выпуклая функция,
+    $f(x_1) = f(\lambda c_2 + (1 - \lambda) x_2) \leqslant \lambda f(c_2) + (1 - \lambda) f(x_2) < \lambda f(x_2) + (1 - \lambda) f(x_2) = f(x_2)$,
+    то есть $f(x_1) < f(x_2)$ --- получили противоречие. Таким образом, $f$ строго возрастает на $[c_2, b]$.
 		
-		\item Аналогично, $f(x)$ строго возрастает на отрезке $[a, c_1]$, где $c_1$ --- самая малая точка $f(c_1) = m$.
+		\item Аналогично, $f(x)$ строго убывает на отрезке $[a, c_1]$, где $c_1$ --- самая малая точка $f(c_1) = m$.
 		
 		\item Рассмотрим $c \in (c_1, c_2) \Rightarrow \exists \lambda \in (0, 1), c = \lambda c_1 + (1 - \lambda) c_2 (c_1 \not = c_2)$.
 		
