@@ -1,1 +1,109 @@
 \que{Выпуклые функции, критерий выпуклости для дважды дифференцируемых функций. Доказать, что если матрица Гессе данной функции неотрицательно определена, то функция является выпуклой (вниз).}
+
+\begin{theorem}[Критерий выпуклости для дважды дифференцируемых функций]
+	Пусть $f(u)$ дважды непрерывно дифференцируемая функция на выпуклом множестве $U\subset\mathbb{R}^n$
+	\begin{equation*}
+		f(u):\: U \to \mathbb{R}
+	\end{equation*}
+	Пусть $H$ -- матрица Гессе функци $f$
+	\begin{equation*}
+		H = 
+		\begin{pmatrix}
+		\dfrac{\partial^2f}{\partial x_1^2} & \dfrac{\partial^2f}{\partial x_1\partial x_2}& \cdots & \dfrac{\partial^2f}{\partial x_1 \partial x_n}\\[12pt]
+		\dfrac{\partial^2f}{\partial x_2\partial x_1} & \dfrac{\partial^2f}{\partial x_2^2}& \cdots & \dfrac{\partial^2f}{\partial x_1 \partial x_n}\\[12pt]
+		\vdots & \vdots & \ddots & \vdots\\[8pt]
+		\dfrac{\partial^2f}{\partial x_n\partial x_1} & \dfrac{\partial^2f}{\partial x_n\partial x_2}& \cdots & \dfrac{\partial^2f}{\partial x_n^2}
+		\end{pmatrix}
+	\end{equation*}
+	$H$ задаёт $\mathrm{d}^2f(u)$ -- квадратичную форму от $\mathrm{d}x_1,\dots$
+	Тогда, если:
+	\begin{itemize}
+		\item $\mathrm{d}^2f(u)$ положительно определённая квадратичная форма ($\mathrm{d}^2f(u)>0$ для всех $u\neq0$), то
+		$f(u)$ строго выпукла (вниз);
+		\item $\mathrm{d}^2f(u)$ отрицательно определённая квадратичная форма ($\mathrm{d}^2f(u)<0$ для всех $u\neq0$), то
+		$f(u)$ строго выпукла вверх;
+		\item $\mathrm{d}^2f(u)$ неотрицательно определённая квадратичная форма ($\mathrm{d}^2f(u)\geq0$ для всех $u$), то
+		$f(u)$ выпукла (вниз);
+		\item $\mathrm{d}^2f(u)$ неположительно определённая квадратичная форма ($\mathrm{d}^2f(u)\leq0$ для всех $u$), то
+		$f(u)$ выпукла вверх;
+	\end{itemize}
+	\begin{proof}[Доказательство. (От обратного)]
+		Пусть квадратичная форма и $H$ положительно определенные, функция $f(u)$ не является строго выпуклой (вниз). Следовательно $\exists x_1,\, x_2 \in U$ и $\exists \lambda\in(0,1)$:
+		\begin{equation}\label{доказательство гессе}
+			f((1-\lambda)x_1+\lambda x_2)\geq (1-\lambda)f(x_1) + \lambda f(x_2).
+		\end{equation}
+		
+		Рассмотрим $h: [0,1]\to U \equiv [x_1, x_2], x_1\neq x_2$
+		\begin{equation*}
+			h(t)=(1-t)x_1 + tx_2.
+		\end{equation*}
+		Определим $\phi(t)$ как
+		\begin{equation*}
+			\phi(t) = f(h(t)).
+		\end{equation*}
+		$\phi(t)$ - непрерывно дифференцируемая функция (как композиция двух непрерывно дифференцируемых функций).
+		Тогда по теореме Лагранжа получим следующее:
+		\begin{enumerate}
+			\item $\exists t_1\in(0,\lambda)$:
+			\begin{equation*}
+				\frac{\phi(\lambda)-\phi(0)}{\lambda-0}=\phi'(t_1)\implies \phi(\lambda)-\phi(0)=\lambda\phi'(t_1).
+			\end{equation*}
+			\item $\exists t_2\in(\lambda,1)$:
+			\begin{equation*}
+			\frac{\phi(1)-\phi(\lambda)}{1-\lambda}=\phi'(t_2)\implies \phi(1)-\phi(\lambda)=(1-\lambda)\phi'(t_2).
+			\end{equation*}
+		\end{enumerate}
+		Тогда можно переписать \eqref{доказательство гессе} как
+		\begin{align*}
+			\phi(\lambda) &\geq (1-\lambda)\phi(0) + \lambda\phi(1),\\
+			\phi(\lambda) &\geq \phi(0)-\lambda\phi(0) + \lambda\phi(1),\\
+			\phi(\lambda) - \phi(0) &\geq \lambda\phi(1) - \lambda\phi(0) = \lambda(\phi(1)-\phi(0)),\\
+			\lambda(\phi(1)-\phi(0)) &\leq \phi(\lambda)-\phi(0)=\lambda\phi'(t_1),\\
+			\lambda(\phi(1)-\phi(0)) &\leq \lambda\phi'(t_1),\\
+			\phi(1)-\phi(0) &\leq \phi'(t_1).
+		\end{align*}
+		Запишем выражение \eqref{доказательство гессе}$-\phi(1)$:
+		\begin{align*}
+			\phi(\lambda)-\phi(1)&\geq(1-\lambda)\phi(0)+(\lambda-1)\phi(1),\\
+			\phi(1)-\phi(\lambda)&\leq(1-\lambda)(\phi(1)-\phi(0)),\\
+			(1-\lambda)\phi'(t_2)&\leq(1-\lambda)(\phi(1)-\phi(0)),\\
+			\phi'(t_2)&\leq\phi(1)-\phi(0).
+		\end{align*}
+		Получили следующее
+		\begin{equation*}
+			\begin{cases}
+				\phi(1)-\phi(0) &\leq \phi'(t_1),\\
+				\phi(1)-\phi(0) &\geq \phi'(t_2).
+			\end{cases}
+			\Leftrightarrow
+			\phi'(t_2)\leq\phi(1)-\phi(0)\leq\phi'(t_1)
+			\Leftrightarrow
+			\phi'(t_2)\leq\phi'(t_1)
+		\end{equation*}
+		$\phi'(t)$ непрерывно дифференцируем (так как $f,h$ дважды непрерывно дифференцируемы). Тогда по теореме Лагранжа $\exists t_3\in (t_1, t_2)$
+		\begin{equation}\label{phi<=0}
+			\phi''(t_3) = \frac{\overbrace{\phi'(t_2)-\phi'(t_1)}^{\leq0}}{\underbrace{t_2-t_1}_{>0}}\leq 0\quad (\text{так как}\; \phi'(t_2)\leq\phi'(t_1),\;t_1<t_2).
+		\end{equation}
+		Рассмотрим $\phi''(t_3)$, по формуле:
+		\begin{equation*}
+			\phi''(t_3)=\sum_{i,j=\overline{1,n}} \frac{\partial^2f}{\partial x_i\partial x_j} h'_i(t_3)\cdot h'_j(t_3) + \sum_{i=\overline{1,n}} \frac{\partial f}{\partial x_i}\left(h(t_3)\right)h''_i(t_3).
+		\end{equation*}
+		Принимая в учёт, что
+		\begin{align*}
+			h(t) &= (1-t)x_1 + tx_2,\\
+			h_i(t) &= (1-t)(x_1)_i + t(x_2)_i,\\
+			h'_i(t) &= -(x_1)_i + (x_2)_i = (x_2-x_1),\\
+			h''_i(t) &= 0,
+		\end{align*}
+		получим следующее:
+		\begin{equation*}
+			\phi''(t_3) = (x_2-x_1) \cdot H_f\left(h(t_3)\right) \cdot (x_2-x_1)>0,
+		\end{equation*}
+		что противоречит \eqref{phi<=0}. Пришли к противоречию.
+		
+		Аналогично доказываются остальные 3 случая (неотрицательно/отрицательно/положительно определенная $H$)
+	\end{proof}
+	\begin{remark}
+		По-хорошему для полного доказательство теоремы нужно еще доказать обратное ($\Leftarrow$) (если $f(u)$ выпуклая, то матрица $H$ неотрицательно определенная), но в вопросе обозначено только доказательство ($\Rightarrow$).
+	\end{remark}
+\end{theorem}
