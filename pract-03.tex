@@ -1,7 +1,51 @@
 \subsection{Поиск локальных и глобальных минимумов и максимумов функции в
 области с границей.}
 \begin{example}
-  Найти глобальные минимум
+  Найти глобальные минимум функции $u=x^2-3xy+y^3$ на $S=\left\{(x,y)|x\in[-1,3], y\in[-1,2]\right\}$ (прямоугольник).
+  \begin{solution}
+  	\textbf{1. Стационарные точки внутри области}
+  	\begin{align*}
+  		\frac{\partial u }{\partial x} = 2x-3y\\
+  		\frac{\partial u }{\partial y} = -3x+3y^2
+  	\end{align*}
+  	\begin{equation*}
+  		\begin{cases}
+  			2x-3y &= 0,\\
+  			-3x+3y^2 &= 0.
+  		\end{cases}
+  		\Rightarrow (0,0),\,\left(\frac{9}{4},\frac{3}{2}\right)
+  	\end{equation*}
+  	\textbf{Проверяем, что точки лежат внутри области}
+  	
+  	\textbf{2. Стационарные точки на границе области}
+  	Формула вершины параболы $X_{B} = \frac{-b}{2a}$
+  	\begin{itemize}
+  		\item $y=-1: u=x^2+3x-1\Rightarrow X_{B} = -\frac{3}{2}$ - локальный минимум. 
+  		Точка: $\left(\frac{-3}{2}, -1\right) \notin S$. Не принадлежит области, поэтому выкидываем.
+  		\item $y=2: u=x^2-6x+8\Rightarrow X_B = \frac{6}{2}=3$ - локальный минимум.
+  		Точка: $(3,2)\in S$
+  		\item $x=-1: u=1+3y+y^3\Rightarrow u'=3+3y^2=0 \Rightarrow y\in \varnothing$
+  		\item $x=3: u=9-9y+y^3\Rightarrow u'=-9+3y^2=0 \Rightarrow y=\pm\sqrt{3}$. Точки: $(3,\sqrt{3})\in S,\,(3,-\sqrt{3})\notin S$
+  	\end{itemize}
+  	
+  	\textbf{3. К рассматриваемым точкам добавляем еще границы границы, в нашем случае -- это углы прямоугольника}
+  	
+  	\textbf{4. Проверяем значения функции $u$ в полученных точках.}
+  	\begin{itemize}
+  		\item $u(0,0)=0$
+  		\item $u(\frac{9}{4},\frac{3}{2})=-\frac{27}{16}$
+  		\item $u(3,\sqrt{3})=9-6\sqrt{3}\approx-1.3923$
+  		\item $u(3,2)=-1$
+  		\item $u(3,-1)=17$
+  		\item $u(-1,2)=15$
+  		\item $u(-1,-1)=-3$
+  	\end{itemize}
+  	
+  	Тогда глобальные минимум и максимум функции
+  	\begin{equation*}
+  		\boxed{\min_{S} u = u(-1,-1)=-3,\quad \max_{S} u = u(3,-1)=17}
+  	\end{equation*}
+  \end{solution}
 \end{example}
 
 
