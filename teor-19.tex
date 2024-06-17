@@ -2,8 +2,9 @@
 
 $F(x, y, z)$ --- дважды непрерывно-дифференцируема как функция двух переменных. Рассмотрим функции $y \in D_1[a, b], y(a) = A, y(b) = B$. 
 
-$y$ доставляет слабый экстремум функционалу $J(y) = \int_{a}^{b} F(x, y, y') \, dx$. 
+Найти такой $y$, который доставляет слабый экстремум функционалу $J(y) = \int_{a}^{b} F(x, y, y') \, dx$. 
 
+\paragraph{Уравнение Эйлера.}
 Пусть $h(x)$ --- некоторое приращение для $y(x)$. $h \in D_1[a, b]$. Потребуем, чтобы $h(a) = h(b) = 0$. Вычислим приращения $\Delta J$:
 \begin{equation*}
 	\Delta J = \int_{a}^{b} F(x, y + h, y' + h') = \int_{a}^{b} (F(x, y + h, y' + h') - F(x, y, y')) \, dx.
@@ -18,9 +19,10 @@ $y$ доставляет слабый экстремум функционалу 
 
 Подставим $\beta_x = 0, \beta_y = h(x), \beta_z = h'(x), y = y(x), z = y'(x):$
 \begin{gather*}
-	F(x, y + h, y' + h') = h \cdot F_y(x, y, y') + h' \cdot F_{y'}(x, y, y') + \frac{1}{2} (h^2 \cdot F_{y y}(x, y + \theta h, y' + \theta h')) + \\
+	F(x, y + h, y' + h') - F(x, y, y') = h \cdot F_y(x, y, y') + h' \cdot F_{y'}(x, y, y') + \frac{1}{2} (h^2 \cdot F_{y y}(x, y + \theta h, y' + \theta h')) + \\
 	+ 2 h h' \cdot F_{y y'}(x, y + \theta h, y' + \theta h') + h'^2 \cdot F_{y'y'}(x, y + \theta h, y' + \theta h'); \\
-	\int_{a}^{b} (F(x, y + h, y' + h') - F(x, y, y')) \, dx = \int_{a}^{b} (h \cdot F_y(x, y, y') + h' \cdot F_{y'}(x, y, y')) \, dx + \\
+	\int_{a}^{b} (F(x, y + h, y' + h') - F(x, y, y')) \, dx =
+  \underbrace{\int_{a}^{b} (h \cdot F_y(x, y, y') + h' \cdot F_{y'}(x, y, y')) \, dx}_{\varphi(h)} + \\
 	+ \int_{a}^{b} \left(\frac{h^2}{2} \cdot F_{y y}(x, y + \theta h, y' + \theta h') + h h' \cdot F_{y y'}(x, y + \theta h, y' + \theta h') + \frac{h'^2}{2} \cdot F_{y' y'} (x, y + \theta h, y' + \theta h')\right) \, dx.
 \end{gather*}
 
