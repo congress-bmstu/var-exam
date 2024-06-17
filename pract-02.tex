@@ -1,1 +1,56 @@
 \subsection{Выпуклые функции, критерий выпуклости.}
+\begin{definition}
+  \emph{Главным минором} порядка $ k $ матрицы $ H = (h_{ij}) $ называется
+  определитель вида 
+  \[
+    \Delta_{i_1\ldots i_k} = \det \begin{pmatrix}
+      a_{i_1i_1} & \cdots & a_{i_1i_k} \\
+      \vdots & \ddots & \vdots \\
+      a_{i_ki_1} & \cdots & a_{i_ki_k}
+    \end{pmatrix},
+  \]
+ Иными словами, при подсчёте минора порядка $ k $ мы просто оставляем в матрице
+ $ k $ строк и $ k $ столбцов с одними и теми же индексами $ i_1, $ $ i_2 $, $ \ldots $, $ i_k $.
+\end{definition}
+
+\begin{example}
+  Найти значения параметра $ a $, при которых функция 
+  \[
+      f(x, y) = ax^2 + (2a-2)xy + (a-3)y^2
+  \]
+  является выпуклой.
+  \begin{solution}
+    \textbf{1. Найти матрицу Гессе.} Для составление матрицы Гессе нужно найти
+    производные второго порядка: 
+    \begin{gather*}
+    \begin{aligned}
+      \frac{\partial f}{\partial x} &= 2ax + (2a-2)y, & \frac{\partial^2
+      f}{\partial x^2} &=2a, \\
+      \frac{\partial f}{\partial y} &= (2a-2)x + 2(a-3) y, & \frac{\partial^2
+      f}{\partial y^2} &= 2(a-3) = 2a - 6,
+    \end{aligned} \\ 
+    \frac{\partial^2 f}{\partial y \partial x} = 2a -2.
+  \end{gather*}
+  Тогда матрица Гессе будет иметь вид 
+  \[
+      H = \begin{pmatrix}
+        2a & 2(a-1) \\
+        2(a-1) & 2(a-3)
+      \end{pmatrix}.
+  \]
+  \textbf{2. Вычислить главные миноры (всех порядков) матрицы Гессе.} Имеем $
+  \Delta_1 = 2a $, $ \Delta_2 = 2a -6 $; $ \Delta_{12} = \det H = -4(a+1) $.
+
+  \textbf{3. Из неотрицательности миноров находим условие на $ a $.} Получаем
+  систему  
+  \[
+      \begin{cases}
+        2a \geqslant 0, \\
+        2a - 6 \geqslant 0 \Rightarrow a \geqslant 3, \\
+        a + 1 \leqslant 0.
+      \end{cases}
+  \]
+  Таким образом \fbox{решений у задачи нет.} 
+    
+  \end{solution}
+\end{example}

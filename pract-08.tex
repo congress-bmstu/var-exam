@@ -1,1 +1,37 @@
 \subsection{Изопериметрическая задача.}
+\begin{example}
+  Найти экстремали изопериметрической задачи.  
+  \[
+    \int\limits_{0}^{2} (y')^2\,dx \to \mathrm{extr}, \quad
+    \int\limits_{0}^{2} xy\,dx = 1, \quad
+    y(0) = 0, \quad
+    y(2) = 0.
+  \]
+  
+\begin{solution}
+  Подынтегральную функцию первого интеграла обозначим $ F $, второго --- $ G $.
+  Найдём функцию $ R = F + \lambda G $ и составим для неё уравнение Эйлера
+  \begin{gather*}
+      R= (y')^2 + \lambda xy,\\
+      R_y - \frac{d}{dx} R_{y'} = 0,\\
+      \lambda x - 2y'' = 0.
+  \end{gather*}
+Получим ответ $ y = \frac{\lambda}{12} x^3 + C_1 x + C_2 $. Причём, исходя из
+граничных условий, $ C_2 = 0 $, $ C_1 = - \lambda/3 $, и окончательно,  
+\[
+    y = \frac{\lambda}{12}x^3 - \frac{\lambda}{3} x.
+\]
+Подставим полученную функцию во второй интеграл.  
+\[
+  \lambda\int\limits_{0}^{2}\frac{x^4}{12} - \frac{x^2}{3}\,dx = 1,
+\]
+откуда $ \lambda = -45/16 $. Итоговый ответ: 
+\[
+    \boxed{
+      y(x) = - \frac{15 x^{3}}{64} + \frac{15 x}{16}.
+    }
+\]
+
+\end{solution}
+\end{example}
+
