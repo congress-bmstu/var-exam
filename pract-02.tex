@@ -13,6 +13,50 @@
  $ k $ строк и $ k $ столбцов с одними и теми же индексами $ i_1, $ $ i_2 $, $ \ldots $, $ i_k $.
 \end{definition}
 
+Например, для матрицы третьего порядка:
+\begin{align*}
+	&\Delta_{123}=\left|\begin{matrix}
+		X & X & X \\
+		X & X & X \\
+		X & X & X 
+	\end{matrix}\right|,\\
+	&\Delta_{12}=\left|\begin{matrix}
+	X & X & . \\
+	X & X & . \\
+	. & . & . 
+	\end{matrix}\right|,
+	\Delta_{23}=
+	\left|\begin{matrix}
+		. & . & . \\
+		. & X & X \\
+		. & X & X 
+	\end{matrix}\right|,
+	\Delta_{13}=
+	\left|\begin{matrix}
+		X & . & X \\
+		. & . & . \\
+		X & . & X 
+	\end{matrix}\right|,\\
+	&\Delta_{1}=
+	\left|\begin{matrix}
+	X & . & . \\
+	. & . & . \\
+	. & . & . 
+	\end{matrix}\right|,
+	\Delta_{2}=
+	\left|\begin{matrix}
+	. & . & . \\
+	. & X & . \\
+	. & . & . 
+	\end{matrix}\right|,
+	\Delta_{3}=
+	\left|\begin{matrix}
+	. & . & . \\
+	. & . & . \\
+	. & . & X 
+	\end{matrix}\right|
+\end{align*}
+
 \begin{example}
   Найти значения параметра $ a $, при которых функция 
   \[
