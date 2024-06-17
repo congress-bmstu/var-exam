@@ -113,13 +113,15 @@
 \titleformat{\section}{\centering\LARGE\bf\scshape}{}{1em}{}
 
 \begin{document}
-%	\tableofcontents 
 	
+	\pagestyle{empty}
 	\begin{center}
 		\Huge \bf	
 		\textsc{Методы оптимизации и вариационное исчисление}
 		\rule{\textwidth}{0.4pt}
 	\end{center}
+	\tableofcontents\newpage
+	\pagestyle{plain}
 	
 	\input{theory}
 	\input{practice}
